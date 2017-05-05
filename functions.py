@@ -8,7 +8,6 @@ import requests
 from urllib import urlopen
 import ConfigParser
 import json
-import re
 
 #import for pgoapi
 from pgoapi import PGoApi
@@ -61,6 +60,12 @@ def calc_level(pokemon_data):
     level = (round(level) * 2) / 2.0
     return level
 
+def isfloat(value):
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
 
 def check_iv_cp(msg):
     global ac_sum
@@ -68,7 +73,7 @@ def check_iv_cp(msg):
     #Access Control
     if 'text' in msg and ',' in msg['text']:
         cmd = msg['text'].split(',')
-        if re.match("^\d+?\.\d+?$", cmd[0]) is not None and re.match("^\d+?\.\d+?$", cmd[1]) is not None:
+        if isfloat(cmd[0]) is True and isfloat(cmd[1]) is True:
             LOGIN = None
             def login():
                 try:
