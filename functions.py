@@ -8,6 +8,7 @@ import requests
 from urllib import urlopen
 import ConfigParser
 import json
+import re
 
 #import for pgoapi
 from pgoapi import PGoApi
@@ -65,9 +66,9 @@ def check_iv_cp(msg):
     global ac_sum
 
     #Access Control
-    if 1:
-        if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:3] == '/cp':
-            cmd = msg['text'].split(' ')
+    if 'text' in msg and ',' in msg['text']:
+        cmd = msg['text'].split(',')
+        if re.match("^\d+?\.\d+?$", cmd[0]) is not None and re.match("^\d+?\.\d+?$", cmd[1]) is not None:
             LOGIN = None
             def login():
                 try:
@@ -94,7 +95,6 @@ def check_iv_cp(msg):
                     bot.sendMessage(msg['chat']['id'], "唔支持國際航班")
                     return place is False
                     pass
-                pkm_id = int(cmd[1])
                 pkm_raw = []
                 pkm = []
                 alt = random.uniform(0.0, 70.0)
@@ -180,7 +180,7 @@ def check_iv_cp(msg):
                             pkm_lvl = calc_level(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'])
 
 
-                            pkm_n = pkm_hk.get(str(pkm_id))
+                            pkm_n = pkm_hk.get(str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('pokemon_id'))
                             mv_1_n = pkm_mv.get(str(mv_1))
                             mv_2_n = pkm_mv.get(str(mv_2))
 
@@ -213,8 +213,7 @@ def check_iv_cp(msg):
                     pkm_confirmed = []
                     
                     for i in pkm:
-                        if i.get('pokemon_id') == int(pkm_id):
-                            pkm_confirmed.append(i)
+                        pkm_confirmed.append(i)
 
                     if len(pkm_confirmed) == 0:
                         SendM = "搵唔到wo\n有人搞事？？" + "\n" + "----------完----------"
