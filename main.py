@@ -5,7 +5,7 @@ import sys
 import time
 import telepot
 import ConfigParser
-from functions import check_iv_cp, show_map, gps
+from functions import check_iv_cp
 
 #config
 config = ConfigParser.ConfigParser()
