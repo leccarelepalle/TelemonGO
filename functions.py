@@ -246,18 +246,3 @@ def check_iv_cp(msg):
                     SendM += "\n"+ str(ac_list[(ac_sum-1)]) 
                 bot.sendMessage(own_id,SendM)
                 
-def gps(msg):
-    if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:4] == '/gps':
-        lat = float(msg['reply_to_message']['location']['latitude'])
-        lng = float(msg['reply_to_message']['location']['longitude'])
-        f = urlopen('https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=512x512&maptype=hybrid&markers=color:red|' + str(lat) + ',' + str(lng))
-        bot.sendPhoto(msg['chat']['id'],f)
-        
-
-def show_map(msg):
-    if 'text' in msg and msg['text'][:4] == '/map':
-        try:
-            location = msg['text'].split(' ')
-            bot.sendLocation(msg['chat']['id'], location[1], location[2])
-        except:
-            bot.sendMessage(msg['chat']['id'], "打 /map <lat> <lng>，獲得地圖一份")
