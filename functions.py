@@ -186,14 +186,14 @@ def check_iv_cp(msg):
 
 
                             #Send Results to Telegram
-                            SendM =  '#'+ pkm_n + '  (' + str(iv_0) + '%)\n\n30+:\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + str(mv_1_n) + '  |  ' + str(mv_2_n) + '\nCP: ' + str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp']) + '\nLVL: ' + str(pkm_lvl) 
+                            SendM =  '#'+ pkm_n + '  (' + str(iv_0) + '%)\n\n30+:\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + mv_1_n + '  |  ' + mv_2_n + '\nCP: ' + str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp']) + '\nLVL: ' + str(pkm_lvl) 
                             #Unown Form
                             if int(str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('pokemon_id'))) == 201:
                                 form = int(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['pokemon_display']['form'])
                                 form_l = 'A' if form is 1 else 'B' if form is 2 else 'C' if form is 3 else 'D' if form is 4 else 'E' if form is 5 else 'F' if form is 6 else 'G' if form is 7 else 'H' if form is 8 else 'I' if form is 9 else 'J' if form is 10 else 'K' if form is 11 else 'L' if form is 12 else 'M' if form is 13 else 'N' if form is 14 else 'O' if form is 15 else 'P' if form is 16 else 'Q' if form is 17 else 'R' if form is 18 else 'S' if form is 19 else 'T' if form is 20 else 'U' if form is 21 else 'V' if form is 22 else 'W' if form is 23 else 'X' if form is 24 else 'Y' if form is 25 else 'Z' if form is 26 else '!' if form is 27 else '?' if form is 28 else '' #neutral
                                 SendM = SendM + "\nLetter: " + str(form_l)
                             SendM += tth
-                            print SendM
+                            #print SendM
                             bot.sendMessage(msg['chat']['id'],SendM)
 
                             #A logging on telegram ()for owner
