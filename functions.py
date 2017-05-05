@@ -175,7 +175,7 @@ def check_iv_cp(msg):
                             pkm_lvl = calc_level(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'])
 
 
-                            pkm_n = pkm_hk.get(str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('pokemon_id'))
+                            pkm_n = pkm_hk.get(str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('pokemon_id')))
                             mv_1_n = pkm_mv.get(str(mv_1))
                             mv_2_n = pkm_mv.get(str(mv_2))
 
