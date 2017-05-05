@@ -88,13 +88,8 @@ def check_iv_cp(msg):
                 global home_lat
                 global home_lng
                 bot.sendMessage(msg['chat']['id'],"收到")
-
-                target_lat = float(msg['reply_to_message']['location']['latitude'])
-                target_lng = float(msg['reply_to_message']['location']['longitude'])
-                if int(target_lat) > 22 or int(target_lat) < 22 or int(target_lng) > 114 or int(target_lng) < 113:
-                    bot.sendMessage(msg['chat']['id'], "唔支持國際航班")
-                    return place is False
-                    pass
+                target_lat = float(cmd[0])
+                target_lng = float(cmd[1])
                 pkm_raw = []
                 pkm = []
                 alt = random.uniform(0.0, 70.0)
